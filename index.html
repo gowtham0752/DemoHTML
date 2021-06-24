@@ -1,0 +1,157 @@
+<html>
+    <head>
+      	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+	<script>
+
+     // Single Contact	
+      function getSingleContactFromNativeCode() {  
+  			//iOS
+  			if (window.webkit != undefined) {
+        		window.webkit.messageHandlers.getContacts.postMessage({});
+            }
+  
+  			//Android
+  			if (window.android != undefined) {
+  			
+  			    window.android.getOneContact(document.getElementById("name").value);
+            }
+        }
+
+        // Callback Single Contact
+        function callbackOneContact(obj) {
+        setTitle(obj.contact);
+        }
+
+        // All Contacts
+        function getContactsFromNativeCode() {  
+        //iOS
+        if (window.webkit != undefined) {
+            window.webkit.messageHandlers.getContacts.postMessage({});
+            }
+  
+        //Android
+        if (window.android != undefined) {
+            window.android.getContacts();
+            }
+        }
+
+        // Callback All Contacts
+        function callbackContacts(obj) {
+          setTitle("All Contacts");
+
+      // if (obj.cached) {
+      //  setTitle(cachedContacts.length);
+      // } else {
+      //  setTitle('NOT CACHED');
+      // }
+        }
+
+        // Callback Contacts Count
+        function contactCount(count) {
+			setTitle(count + ' Contact(s)')
+        }
+
+        //  Qr code
+        function scanQRCode() {  
+  			//iOS
+  			if (window.webkit != undefined) {
+        		window.webkit.messageHandlers.scanQRCode.postMessage({});
+            }
+  
+  			//Android
+  			if (window.android != undefined) {
+        		window.android.scanQRCode();
+            }
+        }
+
+        // scanning QR code from camera
+        function selectQRCodeFromPhotos() {  
+        //iOS
+        if (window.webkit != undefined) {
+            window.webkit.messageHandlers.scanQRCode.postMessage({});
+            }
+  
+        //Android
+        if (window.android != undefined) {
+            window.android.selectQRCodeFromPhotos();
+            }
+        }
+
+        // Callback Qr code
+        function callbackQRCode(obj) {
+        setTitle(obj.code);
+        }
+
+        // take photo from camera
+        function takePhotoFromCamera() {  
+        //iOS
+        if (window.webkit != undefined) {
+            window.webkit.messageHandlers.scanQRCode.postMessage({});
+            }
+  
+        //Android
+        if (window.android != undefined) {
+            window.android.takePhoto();
+            }
+        }
+
+        // Callback takePhoto
+        function callbackPhoto(obj) {
+
+        setTitle(obj.photo);
+        }
+
+        
+        function dismissPopup() {  
+  			//iOS
+  			if (window.webkit != undefined) {
+        		window.webkit.messageHandlers.dismissPopup.postMessage({});
+            }
+  
+  			//Android
+  			if (window.android != undefined) {
+        		window.android.dismissPopup();
+            }
+        }
+
+        function titleToColor(color) {
+          var title = document.getElementById("title");
+            title.style.color = color;
+        }
+		
+    		function setTitle(text) {
+    			var title = document.getElementById("title");
+    			title.innerHTML = text;
+    		}
+
+    </script>
+	<body>
+    	<h1 id="title">Zelle Sdk</h1>
+
+		    <div>
+		    <label for="name">Name:</label>
+		    <input type="value" id="name" placeholder="Enter name" name="name">
+  		  </div>
+        
+        <br><br>
+
+    		<button type="button" onclick="getSingleContactFromNativeCode()">Get Contact</button>
+    		<br><br>
+
+        <button type="button" onclick="getContactsFromNativeCode()">Get Contacts</button>
+        <br><br>
+		
+        <button type="button" onclick="scanQRCode()">Scan QR Code</button>
+        <br><br>
+
+        <button type="button" onclick="selectQRCodeFromPhotos()">Scan QR Code From Photos</button>
+        <br><br>
+
+        <button type="button" onclick="takePhotoFromCamera()">Take a Photo</button>
+        <br><br>
+
+		<button type="button" onclick="dismissPopup()">Dismiss Popup</button>
+    	<script> titleToColor('Green') </script>
+	</body>
+</html>
