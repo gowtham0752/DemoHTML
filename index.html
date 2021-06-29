@@ -14,16 +14,17 @@
   
   			//Android
   			if (window.FTKAndroidInterface != undefined) {
+				 window.FTKAndroidInterface.getOneContact();
 
-          var inputValue = document.getElementById("name").value
+         // var inputValue = document.getElementById("name").value
 
-          if (inputValue.length > 0) {
+//           if (inputValue.length > 0) {
 
-            window.FTKAndroidInterface.getOneContact(inputValue);
-          } 
-          else {
-            alert("Please enter the Name or Number.")
-          }
+//             window.FTKAndroidInterface.getOneContact(inputValue);
+//           } 
+//           else {
+//             alert("Please enter the Name or Number.")
+//           }
             }
         }
 
@@ -176,10 +177,10 @@
 	
     	<h1 id="title">Bridge Sdk</h1>
 
-		    <div>
+<!-- 		    <div>
 		    <label for="name">Name:</label>
 		    <input type="value" id="name" placeholder="Enter name" name="name">
-  		  </div>
+  		  </div> -->
 
         <br><br>
 
