@@ -4,6 +4,7 @@
     </head>
 	<script>
 
+
      // Single Contact	
       function getSingleContactFromNativeCode() {  
   			//iOS
@@ -12,15 +13,34 @@
             }
   
   			//Android
-  			if (window.android != undefined) {
-  			
-  			    window.android.getOneContact(document.getElementById("name").value);
+  			if (window.FTKAndroidInterface != undefined) {
+
+          var inputValue = document.getElementById("name").value
+
+          if (inputValue.length > 0) {
+
+            window.FTKAndroidInterface.getOneContact(inputValue);
+          } 
+          else {
+            alert("Please enter the Name or Number.")
+          }
             }
         }
 
         // Callback Single Contact
         function callbackOneContact(obj) {
-        setTitle(obj.contact);
+          var result = obj.contact
+          if(result.includes("Contact Not")) {
+          alert(result)
+          }
+          else {
+          var fields = result.split(',');
+          var name = fields[0];
+          var number = fields[1];
+          alert( "Name : " +name + "\n" + "Number : " + number)
+          }
+
+       // setTitle(obj.contact);
         }
 
         // All Contacts
@@ -31,14 +51,15 @@
             }
   
         //Android
-        if (window.android != undefined) {
-            window.android.getContacts();
+        if (window.FTKAndroidInterface != undefined) {
+            window.FTKAndroidInterface.getContacts();
             }
         }
 
         // Callback All Contacts
         function callbackContacts(obj) {
-          setTitle("All Contacts");
+
+          alert(obj.contacts)
 
       // if (obj.cached) {
       //  setTitle(cachedContacts.length);
@@ -60,8 +81,8 @@
             }
   
   			//Android
-  			if (window.android != undefined) {
-        		window.android.scanQRCode();
+  			if (window.FTKAndroidInterface != undefined) {
+        		window.FTKAndroidInterface.scanQRCode();
             }
         }
 
@@ -73,14 +94,16 @@
             }
   
         //Android
-        if (window.android != undefined) {
-            window.android.selectQRCodeFromPhotos();
+        if (window.FTKAndroidInterface != undefined) {
+            window.FTKAndroidInterface.selectQRCodeFromPhotos();
             }
         }
 
         // Callback Qr code
         function callbackQRCode(obj) {
-        setTitle(obj.code);
+
+          alert(obj.code)
+       // setTitle(obj.code);
         }
 
         // take photo from camera
@@ -91,15 +114,36 @@
             }
   
         //Android
-        if (window.android != undefined) {
-            window.android.takePhoto();
+        if (window.FTKAndroidInterface != undefined) {
+            window.FTKAndroidInterface.takePhoto();
             }
         }
-
+        
         // Callback takePhoto
         function callbackPhoto(obj) {
 
-        setTitle(obj.photo);
+        alert(obj.photo)
+       // setTitle(obj.photo);
+        }
+        
+        // take photo from camera
+        function checkPermissionStatus() {  
+        //iOS
+        if (window.webkit != undefined) {
+            window.webkit.messageHandlers.checkPermissions.postMessage({});
+            }
+  
+        //Android
+        if (window.FTKAndroidInterface != undefined) {
+            window.FTKAndroidInterface.checkPermissions();
+            }
+        }
+        
+        // Callback Permission
+        function callbackPermissions(obj) {
+
+        alert(obj.permission)
+       // setTitle(obj.photo);
         }
 
         
@@ -110,8 +154,8 @@
             }
   
   			//Android
-  			if (window.android != undefined) {
-        		window.android.dismissPopup();
+  			if (window.FTKAndroidInterface != undefined) {
+        		window.FTKAndroidInterface.dismissPopup();
             }
         }
 
@@ -127,13 +171,16 @@
 
     </script>
 	<body>
-    	<h1 id="title">Zelle Sdk</h1>
+	
+	<center>
+	
+    	<h1 id="title">Bridge Sdk</h1>
 
 		    <div>
 		    <label for="name">Name:</label>
 		    <input type="value" id="name" placeholder="Enter name" name="name">
   		  </div>
-        
+
         <br><br>
 
     		<button type="button" onclick="getSingleContactFromNativeCode()">Get Contact</button>
@@ -150,8 +197,13 @@
 
         <button type="button" onclick="takePhotoFromCamera()">Take a Photo</button>
         <br><br>
+        
+        <button type="button" onclick="checkPermissionStatus()">Check Permission</button>
+        <br><br>
 
 		<button type="button" onclick="dismissPopup()">Dismiss Popup</button>
-    	<script> titleToColor('Green') </script>
+    	<script> titleToColor('Blue') </script>
+    	
+    	</center>
 	</body>
 </html>
