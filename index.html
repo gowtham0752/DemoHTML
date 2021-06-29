@@ -38,7 +38,8 @@
 //           var fields = result.split(',');
 //           var name = fields[0];
 //           var number = fields[1];
-          alert( "Name : " +result.name + "\n" + "Number : " + result.number)
+		  const parsedData = JSON.parse(result);
+          alert( "Name : " +parsedData.name + "\n" + "Number : " + parsedData.number)
           }
 
        // setTitle(obj.contact);
