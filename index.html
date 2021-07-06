@@ -61,7 +61,9 @@
         // Callback All Contacts
         function callbackContacts(obj) {
 
-          alert(obj.contacts)
+          //window.android.getUserKey(localStorage.getItem("userAgent"));
+        //  alert(obj.contacts)
+		 alert(window.android.getUserKey(localStorage.getItem("userAgent")))
 
       // if (obj.cached) {
       //  setTitle(cachedContacts.length);
