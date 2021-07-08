@@ -105,7 +105,8 @@
 
         // Callback Qr code
         function callbackQRCode(obj) {
-	  const parsedData = JSON.parse(obj.code.qrCode);
+		var result = obj.code
+	  const parsedData = JSON.parse(result.qrCode);
 		alert( "Name : " +parsedData.name + "\n" + "Number : " + parsedData.phone + "\n" + "E-Mail : " + parsedData.email)
          // alert( "Result : " +parsedData.qrCode)
        // setTitle(obj.code);
