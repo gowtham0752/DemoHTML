@@ -151,6 +151,25 @@
         alert(obj.permission)
        // setTitle(obj.photo);
         }
+		
+		 // Get Location
+        function getLocation() {  
+        //iOS
+        if (window.webkit != undefined) {
+            window.webkit.messageHandlers.getLocation.postMessage({});
+            }
+  
+        //Android
+        if (window.FTKAndroidInterface != undefined) {
+            window.FTKAndroidInterface.getLocation();
+            }
+        }
+
+        // Callback Location
+        function callbackLocation(obj) {
+        var result = obj.location
+        alert("Result : " +result)
+        }
 
         
         function dismissPopup() {  
@@ -204,6 +223,9 @@
         <br><br>
         
         <button type="button" onclick="checkPermissionStatus()">Check Permission</button>
+        <br><br>
+		
+	<button type="button" onclick="getLocation()">Get Location</button>
         <br><br>
 
 		<button type="button" onclick="dismissPopup()">Dismiss Popup</button>
