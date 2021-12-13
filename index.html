@@ -58,24 +58,21 @@
             }
         }
 
-        // Callback All Contacts
+         // Callback All Contacts
         function callbackContacts(obj) {
-		
-		var result = JSON.stringify(cachedContacts);
-                alert("Result " + result);
-// 		alert(obj.contact)
-//             const parsedData = JSON.parse(obj.contact);
-// 		var contact = localStorage.getItem("contact");
-// 		if (parsedData.cached){
-// 			alert("Cached : "+parsedData.cached+"\n"+parsedData.value)
-// 		}else{
-// 			alert("Cached : false")
-// 		}
+		var result = JSON.stringify(cachedContacts)	
+            const parsedData = JSON.parse(obj.contact);
+		//var contact = localStorage.getItem("contact");
+		if (parsedData.cached){
+			alert("Cached : "+JSON.stringify(parsedData)+"\n"+result)
+		}else{
+			alert("Cached : false")
+		}
             
-// 		//iOS
-// 		if(window.webkit != undefined){
-// 			alert("iOS :"+contact)
-// 		}
+		//iOS
+		if(window.webkit != undefined){
+			alert("iOS :"+contact)
+		}
         }
 		
 		
