@@ -60,7 +60,7 @@
 
         // Callback All Contacts
         function callbackContacts(obj) {
-		
+		alert(obj.contact)
             const parsedData = JSON.parse(obj.contact);
 		var contact = localStorage.getItem("contact");
 		if (parsedData.cached){
