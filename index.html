@@ -64,7 +64,7 @@
             const parsedData = JSON.parse(obj.contact);
 		var contact = localStorage.getItem("contact");
 		if (parsedData.cached){
-			alert("Cached : "+JSON.stringify(parsedData)+"\n"+contact)
+			alert("Cached : "+parsedData.cached+"\n"+parsedData.value)
 		}else{
 			alert("Cached : false")
 		}
