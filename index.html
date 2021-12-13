@@ -60,16 +60,19 @@
 
         // Callback All Contacts
         function callbackContacts(obj) {
-
-          //window.android.getUserKey(localStorage.getItem("userAgent"));
-        //  alert(obj.contacts)
-		 alert(window.android.getUserKey(localStorage.getItem("userAgent")))
-
-      // if (obj.cached) {
-      //  setTitle(cachedContacts.length);
-      // } else {
-      //  setTitle('NOT CACHED');
-      // }
+		
+            const parsedData = JSON.parse(obj.contact);
+		var contact = localStorage.getItem("contact");
+		if (parsedData.cached){
+			alert("Cached : "+JSON.stringify(parsedData)+"\n"+contact)
+		}else{
+			alert("Cached : false")
+		}
+            
+		//iOS
+		if(window.webkit != undefined){
+			alert("iOS :"+contact)
+		}
         }
 
         // Callback Contacts Count
